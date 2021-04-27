@@ -1,0 +1,22 @@
+#sidebar {
+  width: 624px !important;
+}
+
+#legend {
+  width: 600px;
+}
+
+#legend input {
+  background-color: transparent;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  cursor: ew-resize;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+#month {
+  font: bold 14px sans-serif;
+}
