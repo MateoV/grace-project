@@ -1,8 +1,7 @@
 const config = {
   accessToken: 'pk.eyJ1IjoibWF0dCIsImEiOiJTUHZkajU0In0.oB-OGTMFtpkga8vC48HjIg',
   mapStyle: 'mapbox://styles/matt/cknz37l6m2zuy17n7puoeiqkp',
-  sourceLayer: 'grace-great-lakes-0j25fc',
-  tilesetID: 'matt.aixo1k0h',
+  sourceLayer: 'grace-great-lakes-corrected-1ctcex',
   title: 'GRACE - Liquid Water Equivalent Thickness (cm)',
   description:
     'Changes in equivalent water thickness (relative to the baseline average over Jan 2004 to Dec 2009) as calculated by JPL from GRACE gravity field observations',
@@ -49,7 +48,7 @@ const config = {
   dataSeriesLabel: 'LWE Thickness (Region Avg)',
   sourceId: 'composite',
   legendColors: ['#6a011f', '#c94741', '#f7b596', '#ffffff', '#a9d1e5', '#3885bc', '#053061'],
-  legendValues: [-30, -20, -10, 0, 10, 20, 30]
+  legendValues: [-60, -40, -20, 0, 20, 40, '60+']
 };
 
 config.years.forEach((year) => {
@@ -87,8 +86,8 @@ const chart = c3.generate({
       }
     },
     y: {
-      max: 50,
-      min: -30
+      max: 100,
+      min: -50
     }
   },
   tooltip: {
@@ -129,11 +128,11 @@ let defColors = [
                   'interpolate',
                   ['linear'],
                   ['get', '2002-04'],
-                  -30,
+                  -60,
                   '#6a011f',
                   0,
                   '#ffffff',
-                  30,
+                  60,
                   '#053061'
                 ];
 let defOpacity = [
