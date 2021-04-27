@@ -93,7 +93,7 @@ const chart = c3.generate({
   },
   tooltip: {
       format: {
-          title: function (d) { return d.toISOString().substring(0, 10); },
+          title: function (d) { return d.toISOString().substring(0, 7); },
           value: function (value, ratio, id) {
               return value.toFixed(2) + ' cm';
           }
