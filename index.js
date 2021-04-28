@@ -98,10 +98,22 @@ const chart = c3.generate({
           }
       }
   },
+  grid: {
+    x: {
+      lines: [{value: '2002-04-01', class: 'grid4'}]
+    },
+    y: {
+      show: true,
+      lines: [{value: 0}]
+    }
+  },
   size: {
     height: 300,
     width: 550
   },
+  transition: {
+    duration: 50
+  }
 });
 
 let summaryData = [];
@@ -157,6 +169,24 @@ map.once('idle', (idleEvent) => {
   });
   featureCheck = sourceFeatures[0];
   processSourceFeatures(sourceFeatures);
+
+  // Create a popup, but don't add it to the map yet.
+  var popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+   
+  map.on('mousemove', config.sourceLayer, function (e) {
+    map.getCanvas().style.cursor = 'pointer';
+    var curDate = document.getElementById('month').textContent;
+    var lwe = e.features[0].properties[curDate];
+    popup.setLngLat(e.lngLat).setHTML(lwe.toFixed(2) + ' cm').addTo(map);
+  });
+   
+  map.on('mouseleave', config.sourceLayer, function () {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+  });
 });
 
 const updateDate = (i) => {
@@ -248,8 +278,9 @@ document.getElementById('slider').setAttribute('max', config.fields.length - 1);
 document.getElementById('slider')
   .addEventListener('input', function (e) {
     var dateIdx = parseInt(e.target.value, 10);
-    document.getElementById('month').textContent = config.fields[dateIdx];
+    chart.xgrids([{value: config.fields[dateIdx] + '-01', class: 'grid4'}]);
     if (featureCheck.properties[config.fields[dateIdx]]) {
+      document.getElementById('month').textContent = config.fields[dateIdx];
       updateDate(dateIdx);
     }
   });

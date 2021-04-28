@@ -6,17 +6,29 @@
   width: 600px;
 }
 
-#legend input {
-  background-color: transparent;
+#slider {
   display: inline-block;
   width: 100%;
   position: relative;
   margin: 0;
   cursor: ew-resize;
-  margin-bottom: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 #month {
+  font: bold 14px sans-serif;
+}
+
+.c3-xgrid-line.grid4 line {
+    stroke: pink;
+}
+
+.c3-xgrid-line.grid4 text {
+    fill: pink;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
   font: bold 14px sans-serif;
 }
